@@ -39,3 +39,14 @@ npm start
 ```
 
 Now you can look at your website at  http://localhost:3000
+
+## Installed Dependincies for this Project
+
+```
+npm install body-parser
+npm install -g nodemon
+```
+
+Bodyparser to get the textinput of the Form in the pug file.
+
+Nodemon to run the project
