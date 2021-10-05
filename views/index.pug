@@ -18,8 +18,17 @@ block content
         input(name = "population" value = "1800000")
       br
       button(type = "submit") Add my City
-      br
-      -var ob = JSON.parse(json)
-      ul
-        for data in ob.cities
-          li=data.name + " " + data.country + " " + data.population
+    -var ob = JSON.parse(json)
+    br
+    br
+    table.table.table-striped
+      tr
+        th Name
+        th Country
+        th Population
+
+      each data in ob.cities
+        tr
+          td= data.name
+          td= data.country
+          td= data.population
