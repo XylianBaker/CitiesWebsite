@@ -4,6 +4,7 @@ block content
   h1= title
   p Welcome to #{title}
   body
+    //- Form to Submit a city 🌆
     form(action = "/", method = "POST")
       div
         label(for = "name") Name:
@@ -18,10 +19,13 @@ block content
         input(name = "population" value = "1800000")
       br
       button(type = "submit") Add my City
+
+    //- Json object and counter variable #️⃣
     -var ob = JSON.parse(json)
     -var i=0
     br
     br
+    //- table to display the Json Objects 🖥️
     table.table.table-striped
       tr
         th Name
