@@ -1,9 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const bodyParser = require('body-parser');
 
 // http://localhost:3000
-
-const bodyParser = require('body-parser');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,6 +12,7 @@ router.get('/', function(req, res, next) {
   }
 });
 
+/* when the submit button is pressed, an item is added to a json file and displayed 🖥️ */
 router.post('/', function (req, res) {
   storeData(req.body, filePath);
   res.render('index', {
@@ -21,10 +21,11 @@ router.post('/', function (req, res) {
   });
 });
 
-// Read 📖 and write 🖊️ files 📁
+/* Read 📖 and write 🖊️ files 📁 */
 const filePath = 'cities.json'
 const fs = require('fs');
 
+/* loads data of a given json file 🔃 */
 const loadData = (filePath) => {
   try {
     return fs.readFileSync(filePath, 'utf8')
@@ -34,6 +35,7 @@ const loadData = (filePath) => {
   }
 }
 
+/* appends data in a json file 📩 */
 const storeData = (data, filePath) => {
   try {
     var obj = JSON.parse(loadData(filePath));
@@ -45,6 +47,7 @@ const storeData = (data, filePath) => {
   }
 }
 
+/* deletes a selected item of a json file 🔥 */
 const deleteItem = (filePath, index) => {
   try {
     var obj = JSON.parse(loadData(filePath));
