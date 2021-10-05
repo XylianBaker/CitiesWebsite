@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  body
+    form(action = "/", method = "POST")
+      div
+        label(for = "name") Name:
+        input(name = "name" value = "Vienna")
+      br
+      div
+        label(for = "country") Country:
+        input(name = "country" value = "Austria")
+      br
+      div
+        label(for = "population") Population:
+        input(name = "population" value = "1800000")
+      br
+      button(type = "submit") Add my City
+      br
+      -var ob = JSON.parse(json)
+      ul
+        for data in ob.cities
+          li=data.name + " " + data.country + " " + data.population

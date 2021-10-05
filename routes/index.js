@@ -1,0 +1,43 @@
+var express = require('express');
+var router = express.Router();
+
+const bodyParser = require('body-parser');
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Cities', json:loadData(filePath)});
+});
+
+router.post('/', function (req, res) {
+  storeData(req.body, filePath);
+  res.send("recieved your request!");
+});
+
+// Read 📖 and write 🖊️ files 📁
+const filePath = 'cities.json'
+const fs = require('fs');
+
+const loadData = (filePath) => {
+  try {
+    return fs.readFileSync(filePath, 'utf8')
+  } catch (err) {
+    console.error(err)
+    return false
+  }
+}
+
+const storeData = (data, filePath) => {
+  try {
+    // var obj = {
+    //   cities: []
+    // };
+    var obj = JSON.parse(loadData(filePath));
+    obj.cities.push(data);
+    var json = JSON.stringify(obj);
+    fs.writeFileSync(filePath, json);
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+module.exports = router;
