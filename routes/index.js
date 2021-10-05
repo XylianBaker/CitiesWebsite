@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+// http://localhost:3000
+
 const bodyParser = require('body-parser');
 
 /* GET home page. */
@@ -28,9 +30,6 @@ const loadData = (filePath) => {
 
 const storeData = (data, filePath) => {
   try {
-    // var obj = {
-    //   cities: []
-    // };
     var obj = JSON.parse(loadData(filePath));
     obj.cities.push(data);
     var json = JSON.stringify(obj);
