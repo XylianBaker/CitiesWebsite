@@ -19,6 +19,7 @@ block content
       br
       button(type = "submit") Add my City
     -var ob = JSON.parse(json)
+    -var i=0
     br
     br
     table.table.table-striped
@@ -32,3 +33,6 @@ block content
           td= data.name
           td= data.country
           td= data.population
+          td
+            a(href="/?delete="+i) delete
+          -i++

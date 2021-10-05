@@ -43,4 +43,11 @@ const storeData = (data, filePath) => {
   }
 }
 
+const deleteItem = (filePath, index) => {
+  var obj = JSON.parse(loadData(filePath));
+  obj.splice(index, index);
+  var json = JSON.stringify(obj);
+  fs.writeFileSync(filePath, json);
+}
+
 module.exports = router;
