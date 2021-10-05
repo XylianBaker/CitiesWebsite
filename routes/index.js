@@ -8,11 +8,13 @@ const bodyParser = require('body-parser');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Cities', json:loadData(filePath)});
+  if (req.query) {
+    deleteItem(filePath, req.query.delete);
+  }
 });
 
 router.post('/', function (req, res) {
   storeData(req.body, filePath);
-  // res.send("recieved your request!");
   res.render('index', {
     title: 'Cities',
     json: loadData(filePath)
@@ -44,10 +46,15 @@ const storeData = (data, filePath) => {
 }
 
 const deleteItem = (filePath, index) => {
-  var obj = JSON.parse(loadData(filePath));
-  obj.splice(index, index);
-  var json = JSON.stringify(obj);
-  fs.writeFileSync(filePath, json);
+  try {
+    var obj = JSON.parse(loadData(filePath));
+    obj.cities.splice(index, index);
+    var json = JSON.stringify(obj);
+    fs.writeFileSync(filePath, json);
+  } catch (err) {
+    console.error(err)
+    return false
+  }
 }
 
 module.exports = router;
