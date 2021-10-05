@@ -6,10 +6,10 @@ const bodyParser = require('body-parser');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Cities', json:loadData(filePath)});
   if (req.query) {
     deleteItem(filePath, req.query.delete);
   }
+  res.render('index', { title: 'Cities', json:loadData(filePath)});
 });
 
 /* when the submit button is pressed, an item is added to a json file and displayed 🖥️ */
