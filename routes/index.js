@@ -12,7 +12,11 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function (req, res) {
   storeData(req.body, filePath);
-  res.send("recieved your request!");
+  // res.send("recieved your request!");
+  res.render('index', {
+    title: 'Cities',
+    json: loadData(filePath)
+  });
 });
 
 // Read 📖 and write 🖊️ files 📁
